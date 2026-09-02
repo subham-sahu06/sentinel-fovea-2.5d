@@ -1,0 +1,80 @@
+name: Test & CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  ros-ci:
+    name: ROS 2 Jazzy & Integration Tests
+    runs-on: ubuntu-24.04
+    container:
+      image: osrf/ros:jazzy-desktop-noble
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install System & Test Dependencies
+        run: |
+          apt-get update
+          apt-get install -y \
+            python3-numpy \
+            python3-pytest \
+            python3-pytest-cov \
+            python3-flake8 \
+            python3-colcon-common-extensions \
+            ros-jazzy-rosbridge-server \
+            ros-jazzy-nav-msgs \
+            ros-jazzy-sensor-msgs \
+            ros-jazzy-geometry-msgs \
+            ros-jazzy-visualization-msgs
+          rm -rf /var/lib/apt/lists/*
+
+      - name: Build ROS Workspace
+        run: |
+          . /opt/ros/jazzy/setup.sh
+          cd ros2_ws
+          colcon build --symlink-install
+
+      - name: Run Colcon Unit & Package Tests
+        run: |
+          . /opt/ros/jazzy/setup.sh
+          . ros2_ws/install/setup.sh
+          cd ros2_ws
+          colcon test --event-handlers console_direct+
+          colcon test-result --all --verbose
+
+      - name: Run Headless Full-Stack E2E Integration Test
+        run: |
+          . /opt/ros/jazzy/setup.sh
+          . ros2_ws/install/setup.sh
+          python3 ros2_ws/test/test_headless_stack.py
+
+  frontend-ci:
+    name: Frontend Lint, Test & Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install NPM Dependencies
+        run: npm ci
+
+      - name: Lint Codebase (Oxlint)
+        run: npm run lint
+
+      - name: Run Frontend Unit Tests
+        run: npm test
+
+      - name: Build Frontend Bundle
+        run: npm run build
+

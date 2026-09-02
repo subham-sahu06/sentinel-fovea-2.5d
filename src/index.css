@@ -1,0 +1,8 @@
+:root { font-family: 'Space Grotesk', 'Segoe UI', sans-serif; color: #e6eee9; background: #0b1012; font-synthesis: none; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+body { margin: 0; min-width: 320px; }
+#root { min-height: 100svh; }
+h1, h2 { margin: 0; font-weight: 500; color: inherit; }
+h1 { font-size: 13px; letter-spacing: .12em; }
+h2 { font-size: clamp(24px, 3vw, 38px); letter-spacing: -.03em; }
+p { margin: 0; }
+button { font: inherit; }
