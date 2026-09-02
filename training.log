@@ -1,0 +1,27 @@
+2026-09-02 02:04:02,261 [INFO] =================================================================
+2026-09-02 02:04:02,261 [INFO] LiDAR 3D Semantic Segmentation Training Pipeline
+2026-09-02 02:04:02,261 [INFO] =================================================================
+2026-09-02 02:04:02,261 [INFO] Dataset:    dataset.csv
+2026-09-02 02:04:02,261 [INFO] Epochs:     10
+2026-09-02 02:04:02,261 [INFO] Batch Size: 32
+2026-09-02 02:04:02,261 [INFO] Points:     1024
+2026-09-02 02:04:02,261 [INFO] Device:     cuda
+2026-09-02 02:04:02,261 [INFO] =================================================================
+2026-09-02 02:04:02,276 [INFO] Loaded 12000 points from dataset.csv
+2026-09-02 02:04:02,280 [INFO] Master Dataset Class distribution: {'DRIVABLE': 3000, 'NEGATIVE_TRENCH': 3000, 'STATIC_OBSTACLE': 3000, 'DYNAMIC_TARGET': 3000}
+2026-09-02 02:04:02,294 [INFO] Loaded 12000 points from dataset.csv
+2026-09-02 02:04:02,298 [INFO] Master Dataset Class distribution: {'DRIVABLE': 3000, 'NEGATIVE_TRENCH': 3000, 'STATIC_OBSTACLE': 3000, 'DYNAMIC_TARGET': 3000}
+2026-09-02 02:04:02,313 [INFO] Model parameters: 373,444
+2026-09-02 02:04:03,516 [INFO] Starting training for 10 epochs on cuda
+2026-09-02 02:04:05,424 [INFO] Epoch [ 1/10] Train Loss: 1.2582 | Val Loss: 1.3732 | Mean IoU: 0.2426 (Drivable: 0.00, Trench: 0.47, Static: 0.00, Dynamic: 0.50)
+2026-09-02 02:04:06,770 [INFO] Epoch [ 2/10] Train Loss: 0.8660 | Val Loss: 1.3430 | Mean IoU: 0.2518 (Drivable: 0.00, Trench: 0.44, Static: 0.00, Dynamic: 0.57)
+2026-09-02 02:04:08,114 [INFO] Epoch [ 3/10] Train Loss: 0.7212 | Val Loss: 1.2997 | Mean IoU: 0.2530 (Drivable: 0.00, Trench: 0.48, Static: 0.00, Dynamic: 0.53)
+2026-09-02 02:04:09,459 [INFO] Epoch [ 4/10] Train Loss: 0.6473 | Val Loss: 1.2418 | Mean IoU: 0.2538 (Drivable: 0.00, Trench: 0.55, Static: 0.00, Dynamic: 0.47)
+2026-09-02 02:04:10,805 [INFO] Epoch [ 5/10] Train Loss: 0.6005 | Val Loss: 1.1830 | Mean IoU: 0.2604 (Drivable: 0.00, Trench: 0.62, Static: 0.00, Dynamic: 0.42)
+2026-09-02 02:04:12,154 [INFO] Epoch [ 6/10] Train Loss: 0.5755 | Val Loss: 1.1207 | Mean IoU: 0.2696 (Drivable: 0.03, Trench: 0.65, Static: 0.00, Dynamic: 0.40)
+2026-09-02 02:04:13,501 [INFO] Epoch [ 7/10] Train Loss: 0.5585 | Val Loss: 1.0424 | Mean IoU: 0.2962 (Drivable: 0.10, Trench: 0.68, Static: 0.00, Dynamic: 0.40)
+2026-09-02 02:04:14,843 [INFO] Epoch [ 8/10] Train Loss: 0.5406 | Val Loss: 0.9648 | Mean IoU: 0.3407 (Drivable: 0.21, Trench: 0.72, Static: 0.00, Dynamic: 0.43)
+2026-09-02 02:04:16,186 [INFO] Epoch [ 9/10] Train Loss: 0.5298 | Val Loss: 0.9089 | Mean IoU: 0.3766 (Drivable: 0.32, Trench: 0.75, Static: 0.00, Dynamic: 0.44)
+2026-09-02 02:04:17,528 [INFO] Epoch [10/10] Train Loss: 0.5216 | Val Loss: 0.8632 | Mean IoU: 0.4150 (Drivable: 0.43, Trench: 0.77, Static: 0.00, Dynamic: 0.46)
+2026-09-02 02:04:17,534 [INFO] ✓ Training Complete! Best Validation mIoU: 0.4150
+2026-09-02 02:04:17,548 [INFO] Exporting trained model to ONNX: ./semantic_model.onnx
